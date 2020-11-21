@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <div class="form-group">
+    <h3>Cadastro de clientes</h3>
+  </div>
+  <!-- <p>
+    <a routerLink="/shipping">Shipping Prices</a>
+  </p> -->
+
+  <!-- <div class="cart-item" *ngFor="let item of items">
+    <span>{{ item.name }} </span>
+    <span>{{ item.price }}</span>
+  </div> -->
+
+  <div class="form-group">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="nome">Nome</label>
+          <input class="form-control" id="nome" type="text" formControlName="nome" required>
+          <div *ngIf="submitted && nome.invalid" class="error">
+            Nome é obrigatório.
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input class="form-control" id="dataNascimento" type="text" formControlName="dataNascimento" [textMask]="{mask: dateMask}" required>
+          <div *ngIf="submitted && dataNascimento.invalid" class="error">
+            Data de Nascimento é obrigatória.
+          </div>
+          <!-- <label for="dataNascimento">Data de Nascimento</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                  name="dp" formControlName="dataNascimento" ngbDatepicker #d="ngbDatepicker" (navigate)="date = $event.next">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+          <div *ngIf="submitted && dataNascimento.invalid" class="error">
+            Data de Nascimento é obrigatória.
+          </div> -->
+        </div>
+        <div class="form-group col-md-3">
+          <label for="sexo">Sexo</label>
+          <select class="form-control" id="sexo" formControlName="sexo">
+            <option selected>Selecione</option>
+            <option>Masculino</option>
+            <option>Feminino</option>
+            <option>Outro</option>
+          </select>
+          <div *ngIf="submitted && sexo.invalid" class="error">
+            Sexo é obrigatório.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-2">
+          <label for="cep">CEP</label>
+          <input class="form-control" id="cep" type="text" formControlName="cep" 
+          (blur)="getEndereco($event.target.value)" [textMask]="{mask: cepMask}">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="endereco">Endereço</label>
+          <input class="form-control" id="endereco" type="text" formControlName="endereco">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="numero">Número</label>
+          <input class="form-control" id="numero" type="text" formControlName="numero">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="complemento">Complemento</label>
+          <input class="form-control" id="complemento" type="text" formControlName="complemento">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="bairro">Bairro</label>
+          <input class="form-control" id="bairro" type="text" formControlName="bairro">
+        </div>
+      
+        <div class="form-group col-md-2">
+          <label for="estado">Estado</label>
+          <input class="form-control" id="estado" type="text" formControlName="estado">
+        </div>
+      
+        <div class="form-group col-md-3">
+          <label for="cidade">Cidade</label>
+          <input class="form-control" id="cidade" type="text" formControlName="cidade">
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Salvar</button>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Data de Nascimento</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Cidade</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cliente of clientes; index as i">
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.dataNascimento }}</td>
+          <td>{{ cliente.sexo }}</td>
+          <td>{{ cliente.endereco }}</td>
+          <td>{{ cliente.estado }}</td>
+          <td>{{ cliente.cidade }}</td>
+          <td><button class="btn btn-primary" (click)="editar(i)">Editar</button></td>
+          <td><button class="btn btn-danger" (click)="remover(i)">Remover</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
