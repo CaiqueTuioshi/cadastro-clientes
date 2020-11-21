@@ -2,15 +2,6 @@
   <div class="form-group">
     <h3>Cadastro de clientes</h3>
   </div>
-  <!-- <p>
-    <a routerLink="/shipping">Shipping Prices</a>
-  </p> -->
-
-  <!-- <div class="cart-item" *ngFor="let item of items">
-    <span>{{ item.name }} </span>
-    <span>{{ item.price }}</span>
-  </div> -->
-
   <div class="form-group">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
       <div class="row">
@@ -23,21 +14,10 @@
         </div>
         <div class="form-group col-md-3">
           <label for="dataNascimento">Data de Nascimento</label>
-          <input class="form-control" id="dataNascimento" type="text" formControlName="dataNascimento" [textMask]="{mask: dateMask}" required>
+          <input class="form-control" id="dataNascimento" type="date" formControlName="dataNascimento" required>
           <div *ngIf="submitted && dataNascimento.invalid" class="error">
             Data de Nascimento é obrigatória.
           </div>
-          <!-- <label for="dataNascimento">Data de Nascimento</label>
-          <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd"
-                  name="dp" formControlName="dataNascimento" ngbDatepicker #d="ngbDatepicker" (navigate)="date = $event.next">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-            </div>
-          </div>
-          <div *ngIf="submitted && dataNascimento.invalid" class="error">
-            Data de Nascimento é obrigatória.
-          </div> -->
         </div>
         <div class="form-group col-md-3">
           <label for="sexo">Sexo</label>

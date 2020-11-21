@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
-import { NgbInputDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ConsultaEnderecoService } from './cadastro.component.service';
 
 @Component({
@@ -10,9 +9,9 @@ import { ConsultaEnderecoService } from './cadastro.component.service';
 })
 export class CadastroComponent implements OnInit{
   cepMask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
-  dateMask = [/[1-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   form: FormGroup;
   submitted = false;
+  indexToEdit;
   clientes = [
     {
       nome: 'Caíque Tuioshi Isiri Lima',
@@ -21,6 +20,10 @@ export class CadastroComponent implements OnInit{
       endereco: 'Rua Teste',
       estado: 'PR',
       cidade: 'Maringá',
+      cep: '',
+      numero: '',
+      complemento: '',
+      bairro: ''
     },
     {
       nome: 'Caíque Tuioshi Isiri Lima',
@@ -29,6 +32,10 @@ export class CadastroComponent implements OnInit{
       endereco: 'Rua Teste',
       estado: 'PR',
       cidade: 'Maringá',
+      cep: '',
+      numero: '',
+      complemento: '',
+      bairro: ''
     },
     {
       nome: 'Caíque Tuioshi Isiri Lima',
@@ -37,6 +44,10 @@ export class CadastroComponent implements OnInit{
       endereco: 'Rua Teste',
       estado: 'PR',
       cidade: 'Maringá',
+      cep: '',
+      numero: '',
+      complemento: '',
+      bairro: ''
     },
     {
       nome: 'Caíque Tuioshi Isiri Lima',
@@ -45,20 +56,17 @@ export class CadastroComponent implements OnInit{
       endereco: 'Rua Teste',
       estado: 'PR',
       cidade: 'Maringá',
+      cep: '',
+      numero: '',
+      complemento: '',
+      bairro: ''
     }
   ];
 
   constructor(
     private consultaEnderecoService: ConsultaEnderecoService,
     private formBuilder: FormBuilder,
-    // config: NgbInputDatepickerConfig
-  ) { 
-    //  config.minDate = {year: 1900, month: 1, day: 1};
-    //  config.maxDate = {year: 2099, month: 12, day: 31};
-    //  config.outsideDays = 'hidden';
-    //  config.autoClose = 'outside';
-    //  config.placement = ['bottom-left', 'bottom-right'];
-  }
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -80,9 +88,7 @@ export class CadastroComponent implements OnInit{
   get dataNascimento() { return this.form.get('dataNascimento'); }
   get sexo() { return this.form.get('sexo'); }
 
-  onSubmit(customerData) {
-    const {year, month, day} = customerData.dataNascimento;
-    
+  onSubmit(customerData) {    
     this.submitted = true;
     
 
@@ -105,7 +111,7 @@ export class CadastroComponent implements OnInit{
     //   customerData
     // ]})
 
-    // this.form.reset();
+    this.form.reset();
 
     console.warn('Your order has been submitted', customerData);
   }
@@ -133,6 +139,24 @@ export class CadastroComponent implements OnInit{
 
   editar(index) {
     console.log({index});
+
+    this.indexToEdit = index
+
+    const cadastroParaEditar = this.clientes[index];
+
+    this.form.setValue({
+      nome: cadastroParaEditar.nome,
+      dataNascimento: cadastroParaEditar.dataNascimento,
+      sexo: cadastroParaEditar.sexo,
+      cep: cadastroParaEditar.cep.replace(/\D/g, ''),
+      endereco: cadastroParaEditar.endereco,
+      numero: cadastroParaEditar.numero,
+      complemento: cadastroParaEditar.complemento,
+      bairro: cadastroParaEditar.bairro,
+      estado: cadastroParaEditar.estado,
+      cidade: cadastroParaEditar.cidade
+    })
+
   }
 
   remover(index) {
