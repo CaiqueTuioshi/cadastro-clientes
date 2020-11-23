@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
+import { Cliente } from 'src/types/Cliente.type';
 import { ConsultaEnderecoService } from './cadastro.component.service';
 
 @Component({
@@ -12,56 +13,7 @@ export class CadastroComponent implements OnInit{
   form: FormGroup;
   submitted = false;
   indexToEdit;
-  clientes = [
-    {
-      nome: 'Caíque Tuioshi Isiri Lima',
-      dataNascimento: '10/11/2020',
-      sexo: 'Masculino',
-      endereco: 'Rua Teste',
-      estado: 'PR',
-      cidade: 'Maringá',
-      cep: '',
-      numero: '',
-      complemento: '',
-      bairro: ''
-    },
-    {
-      nome: 'Caíque Tuioshi Isiri Lima',
-      dataNascimento: '10/11/2020',
-      sexo: 'Masculino',
-      endereco: 'Rua Teste',
-      estado: 'PR',
-      cidade: 'Maringá',
-      cep: '',
-      numero: '',
-      complemento: '',
-      bairro: ''
-    },
-    {
-      nome: 'Caíque Tuioshi Isiri Lima',
-      dataNascimento: '10/11/2020',
-      sexo: 'Masculino',
-      endereco: 'Rua Teste',
-      estado: 'PR',
-      cidade: 'Maringá',
-      cep: '',
-      numero: '',
-      complemento: '',
-      bairro: ''
-    },
-    {
-      nome: 'Caíque Tuioshi Isiri Lima',
-      dataNascimento: '10/11/2020',
-      sexo: 'Masculino',
-      endereco: 'Rua Teste',
-      estado: 'PR',
-      cidade: 'Maringá',
-      cep: '',
-      numero: '',
-      complemento: '',
-      bairro: ''
-    }
-  ];
+  clientes: Cliente;
 
   constructor(
     private consultaEnderecoService: ConsultaEnderecoService,
@@ -81,39 +33,38 @@ export class CadastroComponent implements OnInit{
       estado: '',
       cidade: ''
     });
-    // this.items = this.cartService.getItems();
+
+    this.findAll();    
   }
 
   get nome() { return this.form.get('nome'); }
   get dataNascimento() { return this.form.get('dataNascimento'); }
   get sexo() { return this.form.get('sexo'); }
 
+  findAll() {
+    this.consultaEnderecoService.findAll().subscribe(response => {
+      console.log({response});
+
+      this.clientes = response;
+    });
+  }
+
   onSubmit(customerData) {    
     this.submitted = true;
-    
 
     if (this.form.invalid) {
       return;
     }
 
-    this.clientes = [
-      ...this.clientes,
-      customerData
-    ]
+    this.consultaEnderecoService.save(customerData)
+    .subscribe(response => {
+      console.log("Salvou");
 
-
-
-    // Process checkout data here
-    // this.items = this.cartService.clearCart();
-    // console.log(
-    // {list: this.countries = [
-    //   ...this.countries,
-    //   customerData
-    // ]})
+      this.findAll();
+      
+    })
 
     this.form.reset();
-
-    console.warn('Your order has been submitted', customerData);
   }
 
   getEndereco(cep) {
@@ -156,11 +107,16 @@ export class CadastroComponent implements OnInit{
       estado: cadastroParaEditar.estado,
       cidade: cadastroParaEditar.cidade
     })
-
   }
 
   remover(index) {
     console.log({index});
     
+    this.consultaEnderecoService.remove(this.clientes[index].id)
+    .subscribe(response => {
+      console.log("Removeu");
+      
+      this.findAll();
+    })
   }
 }

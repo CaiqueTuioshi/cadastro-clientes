@@ -6,6 +6,7 @@ import { ConsultaEnderecoService } from './cadastro-clientes/cadastro.component.
 import { HttpClientModule } from '@angular/common/http';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     TextMaskModule,
-    NgbModule
+    NgbModule,
+    AppRoutingModule
   ],
   providers: [
     ConsultaEnderecoService

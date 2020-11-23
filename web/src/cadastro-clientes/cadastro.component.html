@@ -72,6 +72,9 @@
     </form>
   </div>
 
+  <div class="form-group">
+    <h3>Clientes</h3>
+  </div>
   <div class="row">
     <div class="form-group col-md-12">
       <table class="table table-striped">
@@ -96,8 +99,8 @@
           <td>{{ cliente.endereco }}</td>
           <td>{{ cliente.estado }}</td>
           <td>{{ cliente.cidade }}</td>
-          <td><button class="btn btn-primary" (click)="editar(i)">Editar</button></td>
-          <td><button class="btn btn-danger" (click)="remover(i)">Remover</button></td>
+          <td><button class="btn btn-outline-primary" (click)="editar(i)">Editar</button></td>
+          <td><button class="btn btn-outline-danger" (click)="remover(i)">Remover</button></td>
         </tr>
         </tbody>
       </table>
