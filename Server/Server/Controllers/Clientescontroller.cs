@@ -20,42 +20,42 @@ namespace Server.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<List<Cliente>>> findAll([FromServices] Context context)
+        public async Task<ActionResult<List<Cliente>>> findAll()
         {
-            return await context.Cliente.ToListAsync();
+            return await _context.Cliente.ToListAsync();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Cliente>> findById([FromServices] Context context, int id)
+        public async Task<ActionResult<Cliente>> findById(int id)
         {
-            return await context.Cliente.FindAsync(id);
+            return await _context.Cliente.FindAsync(id);
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult<Cliente>> save([FromServices] Context context, [FromBody] Cliente cliente)
+        public async Task<ActionResult<Cliente>> save([FromBody] Cliente cliente)
         {
-            context.Cliente.Add(cliente);
-            await context.SaveChangesAsync();
+            _context.Cliente.Add(cliente);
+            await _context.SaveChangesAsync();
             return cliente;
         }
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult<Cliente>> Edit([FromServices] Context context, int id, Cliente cliente)
+        public async Task<ActionResult<Cliente>> Edit(int id, Cliente cliente)
         {
-            context.Update(cliente);
+            _context.Update(cliente);
             await _context.SaveChangesAsync();
             return cliente;
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public void Delete([FromServices] Context context, int id)
+        public void Delete(int id)
         {
-            context.Cliente.Remove(context.Cliente.FirstOrDefault(cliente => cliente.Id == id));
-            context.SaveChangesAsync();
+            _context.Cliente.Remove(_context.Cliente.FirstOrDefault(cliente => cliente.Id == id));
+            _context.SaveChangesAsync();
         }
     }
 }

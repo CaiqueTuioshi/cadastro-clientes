@@ -7,7 +7,6 @@ D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcor
 D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\Server.dll
 D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\Server.pdb
 D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\Server.Views.dll
-D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\Server.Views.pdb
 D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
 D:\1 - Caíque\0 - Teste CRMALL\cadastro-clientes\Server\Server\bin\Debug\netcoreapp3.1\K4os.Compression.LZ4.dll
