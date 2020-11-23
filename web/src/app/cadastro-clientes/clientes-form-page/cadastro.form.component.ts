@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CadastroError } from 'src/types/CadastroError.type';
 import { CadastroClienteService } from '../cadastro.component.service';
 
 @Component({

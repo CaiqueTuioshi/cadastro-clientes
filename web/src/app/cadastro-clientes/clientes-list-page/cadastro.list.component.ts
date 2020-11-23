@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { CadastroError } from 'src/types/CadastroError.type';
 import { Cliente } from 'src/types/Cliente.type';
 import { CadastroClienteService } from '../cadastro.component.service';
 
