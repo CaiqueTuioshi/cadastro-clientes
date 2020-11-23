@@ -1,0 +1,17 @@
+create schema sistemacadastro;
+
+use sistemacadastro;
+
+CREATE TABLE IF NOT EXISTS Cliente (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(70) NOT NULL,
+    DataNascimento DATE NOT NULL,
+    Sexo VARCHAR(10),
+    Cep VARCHAR(8),
+    Endereco VARCHAR(70),
+    Numero VARCHAR(10),
+    Complemento VARCHAR(20),
+    Bairro VARCHAR(30),
+    Estado VARCHAR(20),
+    Cidade VARCHAR(50)
+);
