@@ -8,7 +8,7 @@ const ClientesAPI = 'http://localhost:5000/api/clientes';
 @Injectable({
     providedIn: 'root'
 })
-export class ConsultaEnderecoService {
+export class CadastroClienteService {
 
   constructor(private http: HttpClient) {}
 
@@ -20,8 +20,14 @@ export class ConsultaEnderecoService {
     return this.http.get(ClientesAPI);
   }
 
+  public findById(id: number): Observable<any> {
+    return this.http.get(`${ClientesAPI}/${id}`)
+  }
+
   public save(cliente: Cliente): Observable<any> {
-    return this.http.post(ClientesAPI, cliente)
+    return cliente.id 
+      ? this.http.put(`${ClientesAPI}/${cliente.id}`, cliente)
+      : this.http.post(ClientesAPI, cliente)
   }
 
   public update(cliente: Cliente): Observable<any> {

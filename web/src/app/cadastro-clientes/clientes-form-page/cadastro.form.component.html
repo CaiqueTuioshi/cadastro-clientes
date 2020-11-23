@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="form-group">
-    <h3>Cadastro de clientes</h3>
+    <h3>{{titulo}}</h3>
   </div>
   <div class="form-group">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
@@ -56,54 +56,22 @@
           <label for="bairro">Bairro</label>
           <input class="form-control" id="bairro" type="text" formControlName="bairro">
         </div>
-      
         <div class="form-group col-md-2">
           <label for="estado">Estado</label>
           <input class="form-control" id="estado" type="text" formControlName="estado">
         </div>
-      
         <div class="form-group col-md-3">
           <label for="cidade">Cidade</label>
           <input class="form-control" id="cidade" type="text" formControlName="cidade">
         </div>
       </div>
-
-      <button class="btn btn-primary" type="submit">Salvar</button>
+      <div class="bd-example">
+      <button class="btn btn-success" type="submit">Salvar</button>
+      <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+    </div>
     </form>
   </div>
-
-  <div class="form-group">
-    <h3>Clientes</h3>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-12">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Data de Nascimento</th>
-          <th scope="col">Sexo</th>
-          <th scope="col">Endereço</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Cidade</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let cliente of clientes; index as i">
-          <td>{{ cliente.nome }}</td>
-          <td>{{ cliente.dataNascimento }}</td>
-          <td>{{ cliente.sexo }}</td>
-          <td>{{ cliente.endereco }}</td>
-          <td>{{ cliente.estado }}</td>
-          <td>{{ cliente.cidade }}</td>
-          <td><button class="btn btn-outline-primary" (click)="editar(i)">Editar</button></td>
-          <td><button class="btn btn-outline-danger" (click)="remover(i)">Remover</button></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+  <div *ngIf="erroBuscarEndereco" class="alert alert-danger" role="alert">
+    {{erroBuscarEndereco}}
   </div>
 </div>
